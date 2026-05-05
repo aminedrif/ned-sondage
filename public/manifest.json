@@ -1,8 +1,7 @@
 {
   "name": "Enquête BI & CRM — Tradifoot Algérie",
-  "short_name": "BI & CRM Survey",
+  "short_name": "BI & CRM",
   "description": "Enquête académique sur l'impact des outils BI sur l'efficacité du CRM",
-  "start_url": "/",
   "display": "standalone",
   "background_color": "#1e1b4b",
   "theme_color": "#4f46e5",
