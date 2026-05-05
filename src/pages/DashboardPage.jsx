@@ -4,6 +4,7 @@ import OverviewTab from '../components/dashboard/OverviewTab';
 import SectionBTab from '../components/dashboard/SectionBTab';
 import SectionCTab from '../components/dashboard/SectionCTab';
 import ExportTab from '../components/dashboard/ExportTab';
+import LoginForm from '../components/dashboard/LoginForm';
 
 const TABS = [
   {
@@ -49,6 +50,27 @@ export default function DashboardPage() {
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [user, setUser] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
+
+  // Check existing session on mount
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      setAuthLoading(false);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  async function handleLogout() {
+    await supabase.auth.signOut();
+    setUser(null);
+  }
 
   async function fetchResponses() {
     setLoading(true);
@@ -65,6 +87,7 @@ export default function DashboardPage() {
   }
 
   useEffect(() => {
+    if (!user) return;
     fetchResponses();
 
     // Realtime subscription
@@ -76,9 +99,26 @@ export default function DashboardPage() {
       .subscribe();
 
     return () => supabase.removeChannel(channel);
-  }, []);
+  }, [user]);
 
   const activeTabData = TABS.find((t) => t.id === activeTab);
+
+  // Auth loading spinner
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-primary-950 via-primary-900 to-surface-900 flex items-center justify-center">
+        <svg className="animate-spin w-10 h-10 text-primary-400" fill="none" viewBox="0 0 24 24">
+          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+        </svg>
+      </div>
+    );
+  }
+
+  // Not authenticated — show login
+  if (!user) {
+    return <LoginForm onLogin={(u) => setUser(u)} />;
+  }
 
   return (
     <div className="min-h-screen bg-surface-50 flex flex-col">
@@ -111,6 +151,16 @@ export default function DashboardPage() {
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
+            </button>
+            <button
+              onClick={handleLogout}
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-700 text-xs font-semibold rounded-xl transition-colors"
+              title="Sign out"
+            >
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              Logout
             </button>
             <a
               href="/"
@@ -148,9 +198,20 @@ export default function DashboardPage() {
             ))}
           </nav>
 
-          <div className="mt-auto pt-4 border-t border-surface-100 px-3">
-            <p className="text-[10px] text-surface-400 font-medium">Academic Research</p>
-            <p className="text-[10px] text-surface-300">BI Impact on CRM Effectiveness</p>
+          <div className="mt-auto pt-4 border-t border-surface-100 px-3 space-y-3">
+            <div>
+              <p className="text-[10px] text-surface-400 font-medium truncate">{user?.email}</p>
+              <p className="text-[10px] text-surface-300">Administrator</p>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-red-600 hover:bg-red-50 transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              Sign Out
+            </button>
           </div>
         </aside>
 
