@@ -1,0 +1,69 @@
+import { sectionCDimensions, uiStrings } from '../../lib/surveyData';
+import LikertRow from './LikertRow';
+
+export default function SectionC({ answers, onChange, lang, error }) {
+  let globalIndex = 1;
+
+  return (
+    <div>
+      <div className="mb-6">
+        <h2 className="text-xl font-bold text-surface-900">
+          {uiStrings.sectionCTitle[lang]}
+        </h2>
+        <p className="text-sm text-surface-500 mt-1">{uiStrings.sectionCInstructions[lang]}</p>
+      </div>
+
+      {error && (
+        <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm font-medium">
+          ⚠️ {error}
+        </div>
+      )}
+
+      <div className="space-y-6">
+        {sectionCDimensions.map((dim, di) => {
+          const dimStart = globalIndex;
+          const dimEnd = dimStart + dim.items.length - 1;
+          const dimItems = dim.items.map((item, ii) => ({
+            ...item,
+            index: dimStart + ii,
+          }));
+          globalIndex = dimEnd + 1;
+
+          const colorMap = [
+            'from-violet-600 to-violet-500',
+            'from-fuchsia-600 to-fuchsia-500',
+            'from-pink-600 to-pink-500',
+            'from-rose-600 to-rose-500',
+          ];
+
+          return (
+            <div key={di} className="bg-white rounded-2xl border border-surface-200 overflow-hidden shadow-sm">
+              <div className={`bg-gradient-to-r ${colorMap[di]} px-4 py-3`}>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-sm font-bold text-white">{dim.title[lang]}</h3>
+                  <span className="text-xs bg-white/20 text-white px-2 py-0.5 rounded-full font-medium">
+                    C{dimStart}–C{dimEnd}
+                  </span>
+                </div>
+              </div>
+              <div className="p-4 divide-y divide-surface-100">
+                {dimItems.map((item) => (
+                  <div key={item.key} className="py-4 first:pt-0 last:pb-0">
+                    <LikertRow
+                      itemKey={item.key}
+                      text={item.text[lang]}
+                      value={answers[item.key]}
+                      onChange={onChange}
+                      lang={lang}
+                      index={item.index}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
