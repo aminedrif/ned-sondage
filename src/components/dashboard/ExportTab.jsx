@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { generateCSV, downloadFile } from '../../lib/statsHelpers';
 import { spssEncodings, sectionBDimensions, sectionCDimensions } from '../../lib/surveyData';
 
-const DEMO_COLS = ['genre', 'age_group', 'education', 'job_position', 'exp_crm', 'exp_bi'];
+const DEMO_COLS = ['genre', 'age_group', 'education', 'job_position', 'exp_crm', 'exp_bi', 'exp_cegid'];
 const B_KEYS = sectionBDimensions.flatMap((d) => d.items.map((i) => i.key));
 const C_KEYS = sectionCDimensions.flatMap((d) => d.items.map((i) => i.key));
 const ALL_COLS = ['id', 'submitted_at', 'lang', ...DEMO_COLS, ...B_KEYS, ...C_KEYS];

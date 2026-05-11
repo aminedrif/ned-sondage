@@ -2,6 +2,7 @@ import { likertLabels } from '../../lib/surveyData';
 
 export default function LikertRow({ itemKey, text, value, onChange, lang, index }) {
   const labels = likertLabels[lang];
+  const shortLabels = likertLabels[lang + 'Short'];
 
   return (
     <div className="mb-6 last:mb-0">
@@ -32,7 +33,7 @@ export default function LikertRow({ itemKey, text, value, onChange, lang, index 
             >
               <span className="text-base leading-none">{score}</span>
               <span className="text-[9px] leading-tight mt-1 font-medium opacity-80 hidden sm:block text-center px-1">
-                {labels[score - 1].split(' ')[0]}
+                {shortLabels[score - 1]}
               </span>
             </button>
           );
@@ -40,11 +41,11 @@ export default function LikertRow({ itemKey, text, value, onChange, lang, index 
       </div>
       {/* Mobile labels */}
       <div className="flex gap-2 mt-1 sm:hidden">
-        <span className="flex-1 text-center text-[9px] text-red-400">{labels[0].split(' ')[0]}</span>
-        <span className="flex-1 text-center text-[9px] text-orange-400">{labels[1].split(' ')[0]}</span>
-        <span className="flex-1 text-center text-[9px] text-yellow-500">{labels[2]}</span>
-        <span className="flex-1 text-center text-[9px] text-green-500">{labels[3]}</span>
-        <span className="flex-1 text-center text-[9px] text-green-600">{labels[4].split(' ')[0]}</span>
+        <span className="flex-1 text-center text-[9px] text-red-400">{shortLabels[0]}</span>
+        <span className="flex-1 text-center text-[9px] text-orange-400">{shortLabels[1]}</span>
+        <span className="flex-1 text-center text-[9px] text-yellow-500">{shortLabels[2]}</span>
+        <span className="flex-1 text-center text-[9px] text-green-500">{shortLabels[3]}</span>
+        <span className="flex-1 text-center text-[9px] text-green-600">{shortLabels[4]}</span>
       </div>
     </div>
   );

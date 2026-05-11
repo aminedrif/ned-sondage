@@ -11,6 +11,14 @@ export default function SectionB({ answers, onChange, lang, error }) {
           {uiStrings.sectionBTitle[lang]}
         </h2>
         <p className="text-sm text-surface-500 mt-1">{uiStrings.sectionBInstructions[lang]}</p>
+        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-surface-400 bg-surface-50 rounded-lg px-3 py-1.5 border border-surface-100">
+          <span className="font-semibold text-surface-500">💡 {lang === 'fr' ? 'Légende' : 'Legend'}:</span>
+          <span><strong className="text-red-400">1</strong> = {lang === 'fr' ? 'Fortement en désaccord' : 'Strongly Disagree'}</span>
+          <span><strong className="text-orange-400">2</strong> = {lang === 'fr' ? 'En désaccord' : 'Disagree'}</span>
+          <span><strong className="text-yellow-500">3</strong> = {lang === 'fr' ? 'Neutre' : 'Neutral'}</span>
+          <span><strong className="text-green-500">4</strong> = {lang === 'fr' ? "D'accord" : 'Agree'}</span>
+          <span><strong className="text-green-600">5</strong> = {lang === 'fr' ? "Fortement d'accord" : 'Strongly Agree'}</span>
+        </div>
       </div>
 
       {error && (

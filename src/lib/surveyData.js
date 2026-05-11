@@ -58,6 +58,15 @@ export const demographicQuestions = [
       { value: '>5 ans', label: { fr: '> 5 ans', en: '> 5 years' } },
     ],
   },
+  {
+    key: 'exp_cegid',
+    label: { fr: 'Expérience avec autres outils (CEGID)', en: '(CEGID) Tools Experience' },
+    options: [
+      { value: '<2 ans', label: { fr: '< 2 ans', en: '< 2 years' } },
+      { value: '2-5 ans', label: { fr: '2–5 ans', en: '2–5 years' } },
+      { value: '>5 ans', label: { fr: '> 5 ans', en: '> 5 years' } },
+    ],
+  },
 ];
 
 // ─── Likert Scale Labels ─────────────────────────────────────────────────────
@@ -65,6 +74,8 @@ export const demographicQuestions = [
 export const likertLabels = {
   fr: ['Fortement en désaccord', 'En désaccord', 'Neutre', "D'accord", "Fortement d'accord"],
   en: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'],
+  frShort: ['Ft. désaccord', 'Désaccord', 'Neutre', "D'accord", "Ft. d'accord"],
+  enShort: ['St. Disagree', 'Disagree', 'Neutral', 'Agree', 'St. Agree'],
 };
 
 // ─── Section B: Business Intelligence Tools (Independent Variable) ───────────
@@ -424,4 +435,5 @@ export const spssEncodings = {
   job_position: { 'Ventes': 1, 'Marketing': 2, 'Service client': 3, 'IT-Données': 4, 'Autre': 5 },
   exp_crm: { '<2 ans': 1, '2-5 ans': 2, '>5 ans': 3 },
   exp_bi: { '<2 ans': 1, '2-5 ans': 2, '>5 ans': 3 },
+  exp_cegid: { '<2 ans': 1, '2-5 ans': 2, '>5 ans': 3 },
 };

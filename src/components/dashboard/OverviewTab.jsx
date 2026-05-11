@@ -62,6 +62,15 @@ export default function OverviewTab({ responses }) {
   const jobCounts = countBy(responses.map((r) => r.job_position));
   const jobData = Object.entries(jobCounts).map(([name, value]) => ({ name, value }));
 
+  const expCrmCounts = countBy(responses.map((r) => r.exp_crm));
+  const expCrmData = Object.entries(expCrmCounts).map(([name, value]) => ({ name, value }));
+
+  const expBiCounts = countBy(responses.map((r) => r.exp_bi));
+  const expBiData = Object.entries(expBiCounts).map(([name, value]) => ({ name, value }));
+
+  const expCegidCounts = countBy(responses.map((r) => r.exp_cegid));
+  const expCegidData = Object.entries(expCegidCounts).map(([name, value]) => ({ name, value }));
+
   const dailyData = responsesPerDay(responses);
 
   return (
@@ -135,6 +144,51 @@ export default function OverviewTab({ responses }) {
               <YAxis dataKey="name" type="category" tick={{ fontSize: 10, fill: '#64748b' }} width={90} />
               <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 24px rgba(0,0,0,.12)' }} cursor={{ fill: '#f1f5f9' }} />
               <Bar dataKey="value" fill="#ec4899" radius={[0, 6, 6, 0]} name="Count" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Experience Charts */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {/* CRM Experience */}
+        <div className="bg-white rounded-2xl border border-surface-200 p-5 shadow-sm">
+          <h3 className="text-sm font-bold text-surface-700 mb-4">Expérience CRM</h3>
+          <ResponsiveContainer width="100%" height={200}>
+            <BarChart data={expCrmData} margin={{ top: 4, right: 4, left: -20, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+              <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#64748b' }} />
+              <YAxis tick={{ fontSize: 11, fill: '#64748b' }} allowDecimals={false} />
+              <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 24px rgba(0,0,0,.12)' }} cursor={{ fill: '#f1f5f9' }} />
+              <Bar dataKey="value" fill="#f59e0b" radius={[6, 6, 0, 0]} name="Count" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* BI Experience */}
+        <div className="bg-white rounded-2xl border border-surface-200 p-5 shadow-sm">
+          <h3 className="text-sm font-bold text-surface-700 mb-4">Expérience BI</h3>
+          <ResponsiveContainer width="100%" height={200}>
+            <BarChart data={expBiData} margin={{ top: 4, right: 4, left: -20, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+              <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#64748b' }} />
+              <YAxis tick={{ fontSize: 11, fill: '#64748b' }} allowDecimals={false} />
+              <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 24px rgba(0,0,0,.12)' }} cursor={{ fill: '#f1f5f9' }} />
+              <Bar dataKey="value" fill="#14b8a6" radius={[6, 6, 0, 0]} name="Count" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* CEGID Experience */}
+        <div className="bg-white rounded-2xl border border-surface-200 p-5 shadow-sm">
+          <h3 className="text-sm font-bold text-surface-700 mb-4">Expérience CEGID</h3>
+          <ResponsiveContainer width="100%" height={200}>
+            <BarChart data={expCegidData} margin={{ top: 4, right: 4, left: -20, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+              <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#64748b' }} />
+              <YAxis tick={{ fontSize: 11, fill: '#64748b' }} allowDecimals={false} />
+              <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 24px rgba(0,0,0,.12)' }} cursor={{ fill: '#f1f5f9' }} />
+              <Bar dataKey="value" fill="#a855f7" radius={[6, 6, 0, 0]} name="Count" />
             </BarChart>
           </ResponsiveContainer>
         </div>

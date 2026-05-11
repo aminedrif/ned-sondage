@@ -90,6 +90,7 @@ export default function SurveyPage() {
       job_position: answers.job_position,
       exp_crm: answers.exp_crm,
       exp_bi: answers.exp_bi,
+      exp_cegid: answers.exp_cegid,
     };
 
     // Add B1–B20
