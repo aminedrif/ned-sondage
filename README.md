@@ -19,7 +19,7 @@ A full-stack academic survey application measuring the impact of Business Intell
 
 1. In Supabase, go to **SQL Editor**
 2. Open and paste the contents of [`supabase/migrations/001_init.sql`](supabase/migrations/001_init.sql)
-3. Click **Run** — this creates the `responses` table with RLS policies and enables Realtime
+3. Click **Run** this creates the `responses` table with RLS policies and enables Realtime
 
 ### 3. Configure Environment Variables
 
