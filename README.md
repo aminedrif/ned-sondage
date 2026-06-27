@@ -99,16 +99,16 @@ src/
 
 ## 📊 Survey Sections
 
-### Section A — Demographics (6 questions)
+### Section A : Demographics (6 questions)
 Gender, Age group, Education, Job position, CRM experience, BI experience
 
-### Section B — Business Intelligence Tools (20 items, 4 dimensions)
+### Section B : Business Intelligence Tools (20 items, 4 dimensions)
 1. **Data Warehouse** (B1–B5)
 2. **OLAP & Dashboards** (B6–B10)
 3. **Data Mining** (B11–B15)
 4. **Overall BI Integration** (B16–B20)
 
-### Section C — CRM System Effectiveness (16 items, 4 dimensions)
+### Section C : CRM System Effectiveness (16 items, 4 dimensions)
 1. **Customer Satisfaction** (C1–C4)
 2. **Customer Retention** (C5–C8)
 3. **Targeting Accuracy** (C9–C12)
