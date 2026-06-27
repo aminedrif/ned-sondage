@@ -1,4 +1,4 @@
-# 📊 BI & CRM Survey — Tradifoot Algérie
+#  BI & CRM Survey — Tradifoot Algérie
 
 A full-stack academic survey application measuring the impact of Business Intelligence tools on CRM system effectiveness at Tradifoot Algeria.
 
@@ -6,7 +6,7 @@ A full-stack academic survey application measuring the impact of Business Intell
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### 1. Create a Supabase Project
 
@@ -41,7 +41,7 @@ The app will be available at `http://localhost:5173`
 
 ---
 
-## 📁 Pages
+##  Pages
 
 | URL | Description |
 |-----|-------------|
@@ -50,7 +50,7 @@ The app will be available at `http://localhost:5173`
 
 ---
 
-## 📐 Project Structure
+##  Project Structure
 
 ```
 src/
@@ -126,4 +126,4 @@ Gender, Age group, Education, Job position, CRM experience, BI experience
 
 ## License
 
-Academic use only — Master's thesis research project.
+Academic use only Master's thesis research project.
