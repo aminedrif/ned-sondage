@@ -81,7 +81,7 @@ src/
 
 ---
 
-## 🌐 Deploy to Vercel
+##  Deploy to Vercel
 
 1. Push your repo to GitHub
 2. Go to [vercel.com](https://vercel.com) → **New Project** → import your repo
@@ -97,7 +97,7 @@ src/
 
 ---
 
-## 📊 Survey Sections
+##  Survey Sections
 
 ### Section A : Demographics (6 questions)
 Gender, Age group, Education, Job position, CRM experience, BI experience
@@ -116,7 +116,7 @@ Gender, Age group, Education, Job position, CRM experience, BI experience
 
 ---
 
-## 📤 Export Options
+##  Export Options
 
 - **CSV** — Full dataset with original text values
 - **SPSS-ready CSV** — Categorical variables encoded as integers
